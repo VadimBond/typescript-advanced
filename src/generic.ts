@@ -55,7 +55,7 @@ const person = {
 // console.log(getObjectValue(person, 'job'));  // error!
 // ==========================================================
 
-class Collection<T extends (number | string | boolean)> {
+class Collection<T extends number | string | boolean> {
   // private _items: T[] = [];
   constructor(private _items: T[] = []) {}
 
@@ -86,3 +86,36 @@ numbers.remove(3);
 // objs.remove({b: 2});
 // console.log(objs.items);  // [{a: 1}, {b: 2}] error!
 // ========================================================
+
+interface Car {
+  model: string;
+  year: number
+}
+
+function createAndValidateCar(model: string, year: number): Car {
+  const car: Partial<Car> = {};
+
+  if (model.length > 3) {
+    car.model = model;
+  }
+
+  if (year > 2000) {
+    car.year = year;
+  }
+
+  return car as Car;
+}
+
+// console.log(createAndValidateCar('Audi', 2002));
+////
+
+const cars: Readonly<Array<string>> = ['Audi', 'Ford'];
+// cars.shift();  // error!
+// console.log(cars[1]);
+
+const ford: Readonly<Car> = {
+  model: 'Ford',
+  year: 2005
+};
+
+// ford.model = 'Volvo';  // error!

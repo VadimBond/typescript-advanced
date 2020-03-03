@@ -44,4 +44,19 @@ strings.remove('Am');
 const numbers = new Collection([1, 3, 7]);
 numbers.add(9);
 numbers.remove(3);
+function createAndValidateCar(model, year) {
+    const car = {};
+    if (model.length > 3) {
+        car.model = model;
+    }
+    if (year > 2000) {
+        car.year = year;
+    }
+    return car;
+}
+const cars = ['Audi', 'Ford'];
+const ford = {
+    model: 'Ford',
+    year: 2005
+};
 //# sourceMappingURL=generic.js.map
