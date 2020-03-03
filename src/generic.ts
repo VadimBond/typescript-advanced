@@ -55,3 +55,34 @@ const person = {
 // console.log(getObjectValue(person, 'job'));  // error!
 // ==========================================================
 
+class Collection<T extends (number | string | boolean)> {
+  // private _items: T[] = [];
+  constructor(private _items: T[] = []) {}
+
+  add(item: T) {
+    this._items.push(item);
+  }
+
+  remove(item: T) {
+    this._items = this._items.filter(i => i !== item);
+  }
+
+  get items(): T[] {
+    return this._items;
+  }
+}
+
+const strings = new Collection<string>(['I', 'Am', 'String']);
+strings.add('!!!');
+strings.remove('Am');
+// console.log(strings.items);
+
+const numbers = new Collection<number>([1, 3, 7]);
+numbers.add(9);
+numbers.remove(3);
+// console.log(numbers.items);
+
+// const objs = new Collection([{a: 1}, {b: 2}]);
+// objs.remove({b: 2});
+// console.log(objs.items);  // [{a: 1}, {b: 2}] error!
+// ========================================================
